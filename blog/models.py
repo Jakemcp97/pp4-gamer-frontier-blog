@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 STATUS = (
@@ -9,7 +10,7 @@ STATUS = (
 )
 
 
-class posts(models.Model):
+class post(models.Model):
     # title field
     title = models.CharField(max_length=200, unique=True)
     # Slug field
@@ -18,9 +19,11 @@ class posts(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     # date and time fields
     updated_on = models.DateTimeField(auto_now=True)
-    created_on = models.DateTimeField()
+    created_on = models.DateTimeField(auto_now=True)
     # content field
     content = models.TextField()
+    # content image
+    featured_image = CloudinaryField('image', default='placeholder')
     # post status
     status = models.IntegerField(choices=STATUS, default=0)
 
