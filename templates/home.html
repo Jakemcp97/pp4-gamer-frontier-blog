@@ -1,0 +1,53 @@
+{% extends "base.html"}
+<title>Home | Gamer Frontier</title>
+
+{% block content %}
+
+<header>
+    <div class="container">
+        <p class="h1">Welcome to the <strong>Gamer Frontier</strong>! </p>
+        <p class="h3">Home of all the latest gaming news!</p>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mt-3 left">
+            {% for post in posts_lists %}
+            <div class="shadow-none card mb-4" id="newsfeed">
+                <div class="card-body">
+                    <h3 class="card-title">{{ post.title }}</h3>
+                    <p class="card-text text-muted h6">
+                        <span>
+                            {{ post.author.first_name }} {{ post.author.last_name }}
+                        </span>
+                        | {{ post.created_on }}
+                    </p>
+                    <span>
+                        <a href="{% url 'post_detail' post.slug %}" class="btn btn-outline-primary">Read more</a>
+                    </span>
+                    <span>
+                        <a href="{% url 'post_detail_amp' post.slug %}" class="btn btn-outline-success">AMP</a>
+                    </span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% if is_paginated %}
+<nav aria-label="Page navigation container"></nav>
+<ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+    <li>
+        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-info"><< Previous</a> 
+    </li>
+    {% endif %}
+    {% if page_obj.has_next %}
+    <li>
+        <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-info"></a>
+    </li>
+    {% endif %}
+</ul>
+{% endif %}
+{% End block %}
