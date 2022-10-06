@@ -1,1 +1,1 @@
-web: gunicorn gamer-frontier.wsgis
+web: gunicorn gamer-frontier.wsgi
