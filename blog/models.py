@@ -24,5 +24,8 @@ class posts(models.Model):
     # post status
     status = models.IntegerField(choices=STATUS, default=0)
 
+    class Meta:
+        ordering = ['-created_on']
+
     def __str__(self):
         return self.title
