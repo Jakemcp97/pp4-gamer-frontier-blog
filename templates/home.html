@@ -14,10 +14,18 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8 mt-3 left">
-            {% for post in posts_lists %}
+            {% for post in post_list %} 
+        <div class="col-md-4">
             <div class="shadow-none card mb-4" id="newsfeed">
                 <div class="card-body">
+                    <div class="image-container">
+                        {% if "placeholder" in post.featured_image.url %}
+                        <img class="card-img-top"
+                            src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg">
+                        {% else %}
+                        <img class="card-img-top" src=" {{ post.featured_image.url }}">
+                        {% endif %}
+                    </div>
                     <h3 class="card-title">{{ post.title }}</h3>
                     <p class="card-text text-muted h6">
                         <span>
@@ -28,13 +36,11 @@
                     <span>
                         <a href="{% url 'post_detail' post.slug %}" class="btn btn-outline-primary">Read more</a>
                     </span>
-                    <span>
-                        <a href="{% url 'post_detail_amp' post.slug %}" class="btn btn-outline-success">AMP</a>
-                    </span>
                 </div>
             </div>
-            {% endfor %}
         </div>
+            {% endfor %}
+        
     </div>
 </div>
 {% if is_paginated %}

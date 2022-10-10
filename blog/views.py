@@ -6,6 +6,7 @@ from django.http import HttpResponse
 
 # Views for post list
 class postslist(generic.ListView):
+    model = post
     queryset = post.objects.filter(status=1).order_by('-created_on')
     template_name = 'home.html'
     paginate_by = 4
