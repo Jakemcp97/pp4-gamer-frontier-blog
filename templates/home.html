@@ -1,20 +1,23 @@
-
 {% extends "base.html" %}
 {% csrf_token %}
- <title>Home | Gamer Frontier</title>
+<title>Home | Gamer Frontier</title>
 
 {% block content %}
 
 <header>
     <div class="container">
-        <p class="h1">Welcome to the <strong>Gamer Frontier</strong>! </p>
-        <p class="h3">Home of all the latest gaming news!</p>
+        <div class="row">
+            <div class="col-md-12 justify-content-center">
+                <p class="h1">Welcome to the <strong>Gamer Frontier</strong>!</p>
+                <p class="h3">Home of all the latest gaming news!</p>
+            </div>
+        </div>
     </div>
 </header>
 
 <div class="container">
     <div class="row">
-            {% for post in post_list %} 
+        {% for post in post_list %}
         <div class="col-md-4">
             <div class="shadow-none card mb-4" id="newsfeed">
                 <div class="card-body bg-success">
@@ -34,13 +37,13 @@
                         | {{ post.created_on }}
                     </p>
                     <span>
-                        <a href="{% url 'post_detail' post.slug %}" class="btn btn-outline-primary">Read more</a>
+                        <a href="{% url 'post_detail' post.slug %}" class="btn btn-outline-light">Read more</a>
                     </span>
                 </div>
             </div>
         </div>
-            {% endfor %}
-        
+        {% endfor %}
+
     </div>
 </div>
 {% if is_paginated %}
@@ -48,7 +51,8 @@
 <ul class="pagination justify-content-center">
     {% if page_obj.has_previous %}
     <li>
-        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-info"><< Previous</a> 
+        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-info">
+            << Previous</a>
     </li>
     {% endif %}
     {% if page_obj.has_next %}
