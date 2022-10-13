@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h2>Create your own site post below:</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8-offset-md-2">
+            <form>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Post title">
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Write your post content here</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+              </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
