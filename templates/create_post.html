@@ -10,19 +10,20 @@
     </div>
     <div class="row">
         <div class="col-md-8-offset-md-2">
-            <form method="POST" action="create_post">
-              {% csrf_token %}
-                <div class="form-group">
-                  <input type="text" class="form-control" id="exampleFormControlInput1" name="post_title" placeholder="Post title">
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlTextarea1">Write your post content here:</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="post_content"></textarea>
-                </div>
-                <button type="submit" class="btn btn-outline-light">
-                  Submit your post for approval
-                </button>
-              </form>
+          <form action="/post/" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ post_form.title }}
+            </div>
+            <div class="form-group">
+                {{ post_form.author }}
+            </div> 
+            <div class="form-group">
+                {{ post_form.content }}
+            </div> 
+            <a button type="submit" class="btn btn-primary" href="{% url 'home' %}" role="button">Submit</a>
+            
+        </form>
 
         </div>
     </div>

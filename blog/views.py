@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from .models import post
-from django.views import generic
+from django.views import generic, View
 from django.views.decorators.http import require_GET
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from .forms import PostForm
 
 # Views for post list
 
@@ -21,14 +22,24 @@ class postdetail(generic.DetailView):
     template_name = "post.html"
 
 
-def create_post(request):
-    template_name = "create_post.html"
+def blog_post(request):
+
+    post_form = PostForm()
     if request.method == 'POST':
-        title = request.POST.get('post_title')
-        content = request.POST.get('post_content')
-        status = 1
-        Item.objects.create(title=title, content=content)
+        post_form = PostForm(request.POST)
+        if post_form.is_valid():
+            post = Post(
+                title=post_form.cleaned_data["title"],
+                author=post_form.cleaned_data["author"],
+                body=post_form.cleaned_data["body"],
+            )
+            post.save()
 
-        return redirect('home')
+    context = {
+        "post_form": post_form,
+    }
 
-    return render(request, 'create_post.html')
+    args = {}
+    args['post_form'] = post_form
+
+    return render(request, "create_post.html", args)

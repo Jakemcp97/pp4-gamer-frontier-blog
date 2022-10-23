@@ -1,7 +1,6 @@
 from . import views
 from django.urls import path, include
 from .views import *
-from .views import create_post
 
 
 urlpatterns = [
@@ -10,5 +9,5 @@ urlpatterns = [
     # posts
     path('<slug:slug>/', views.postdetail.as_view(), name='post_detail'),
     # add post
-    path('add/', views.create_post, name='create_post'),
+    path('blog_post/', views.blog_post, name='blog_post')
 ]
