@@ -28,6 +28,10 @@ class post(models.Model):
     # post status
     status = models.IntegerField(choices=STATUS, default=0)
 
+    def save(self, *args, **kwargs):
+        self.url= slugify(self.title)
+        super(post, self).save(*args, **kwargs) 
+
     class Meta:
         ordering = ['-created_on']
 

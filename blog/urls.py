@@ -5,9 +5,10 @@ from .views import *
 
 urlpatterns = [
     # home
-    path('', views.postslist.as_view(), name='home'),
+    path('', views.postslist.as_view(), name='home'), 
+    # add post
+    path('blog_post/', views.blog_post, name='blog_post'),
     # posts
     path('<slug:slug>/', views.postdetail.as_view(), name='post_detail'),
-    # add post
-    path('blog_post/', views.blog_post, name='blog_post')
+   
 ]

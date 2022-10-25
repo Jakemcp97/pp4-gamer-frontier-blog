@@ -10,18 +10,15 @@
     </div>
     <div class="row">
         <div class="col-md-8-offset-md-2">
-          <form action="/post/" method="post">
+          <form action="" method="post">
             {% csrf_token %}
             <div class="form-group">
-                {{ post_form.title }}
+                Title: {{ form.title }}
             </div>
             <div class="form-group">
-                {{ post_form.author }}
+                Content: {{ form.content }}
             </div> 
-            <div class="form-group">
-                {{ post_form.content }}
-            </div> 
-            <a button type="submit" class="btn btn-primary" href="{% url 'home' %}" role="button">Submit</a>
+            <input button type="submit" class="btn btn-primary" role="button"></a>
             
         </form>
 

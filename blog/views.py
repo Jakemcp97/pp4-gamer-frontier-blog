@@ -24,22 +24,14 @@ class postdetail(generic.DetailView):
 
 def blog_post(request):
 
-    post_form = PostForm()
-    if request.method == 'POST':
-        post_form = PostForm(request.POST)
-        if post_form.is_valid():
-            post = Post(
-                title=post_form.cleaned_data["title"],
-                author=post_form.cleaned_data["author"],
-                body=post_form.cleaned_data["body"],
-            )
-            post.save()
+    form = PostForm(request.POST or None)
 
-    context = {
-        "post_form": post_form,
-    }
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+        return HttpResponseRedirect("")
 
-    args = {}
-    args['post_form'] = post_form
+    context = {'form': form,
+               }
 
-    return render(request, "create_post.html", args)
+    return render(request, "create_post.html", context)
