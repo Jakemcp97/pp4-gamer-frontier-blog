@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from django import forms
+from django.utils.text import slugify
 
 # Create your models here.
 STATUS = (
@@ -17,7 +18,7 @@ class post(models.Model):
     # Slug field
     slug = models.SlugField(max_length=200, unique=True)
     # author field
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     # date and time fields
     updated_on = models.DateTimeField(auto_now=True)
     created_on = models.DateTimeField(auto_now=True)
@@ -29,7 +30,7 @@ class post(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
 
     def save(self, *args, **kwargs):
-        self.url= slugify(self.title)
+        self.url = slugify(self.title)
         super(post, self).save(*args, **kwargs) 
 
     class Meta:
