@@ -18,7 +18,8 @@ class post(models.Model):
     # Slug field
     slug = models.SlugField(max_length=200, unique=True)
     # author field
-    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True, blank=True)
     # date and time fields
     updated_on = models.DateTimeField(auto_now=True)
     created_on = models.DateTimeField(auto_now=True)
@@ -30,8 +31,8 @@ class post(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
 
     def save(self, *args, **kwargs):
-        self.url = slugify(self.title)
-        super(post, self).save(*args, **kwargs) 
+        self.slug = slugify(self.title)
+        super(post, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ['-created_on']
