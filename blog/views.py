@@ -28,6 +28,7 @@ def blog_post(request):
 
     if request.method == "POST":
         if form.is_valid():
+            form.instance.user = request.user
             form.save()
         return HttpResponseRedirect("")
 
