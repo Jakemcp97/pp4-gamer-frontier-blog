@@ -1,9 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import post
 from django.views import generic, View
 from django.views.decorators.http import require_GET
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import PostForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+
 
 # Views for post list
 
@@ -23,16 +27,19 @@ class postdetail(generic.DetailView):
 
 
 def blog_post(request):
-
-    form = PostForm(request.POST or None)
-
-    if request.method == "POST":
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             form.instance.user = request.user
             form.save()
-        return HttpResponseRedirect("")
+            return redirect('blog:home')  # validating
+    else:
+        form = PostForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'create_post.html', context)
 
-    context = {'form': form,
-               }
 
-    return render(request, "create_post.html", context)
+def success(request):
+    return HttpResponseRedirect("home.html")
