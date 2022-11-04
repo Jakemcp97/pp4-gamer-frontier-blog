@@ -13,9 +13,3 @@ class PostAdmin(SummernoteModelAdmin):
     search_fields = ['title', 'content']
     prepopulated_fields = {'slug': ('title',)}
     readonly_fields = ['author']
-
-    form = PostForm
-
-    def save_model(self, request, obj, form, change):
-        obj.author = request.user
-        super().save_model(request, obj, form, change)

@@ -16,7 +16,7 @@ class postslist(generic.ListView):
     model = post
     queryset = post.objects.filter(status=1).order_by('-created_on')
     template_name = 'home.html'
-    paginate_by = 4
+    paginate_by = 6
 
 # view for individual post
 
@@ -26,20 +26,13 @@ class postdetail(generic.DetailView):
     template_name = "post.html"
 
 
-def blog_post(request):
-    if request.method == 'POST':
-        form = PostForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.instance.user = request.user
-            form.save()
-            return redirect('blog:home')  # validating
-    else:
-        form = PostForm()
-    context = {
-        'form': form,
-    }
-    return render(request, 'create_post.html', context)
+class PostCreateView(LoginRequiredMixin, CreateView):
+    form_class = PostForm
+    template_name = 'create_post.html'
+    success_url = reverse_lazy('home')
 
-
-def success(request):
-    return HttpResponseRedirect("home.html")
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        instance = form.save(commit=False)
+        instance.author = self.request.user
+        return super().form_valid(form)

@@ -3,16 +3,11 @@ from django.urls import path, include
 from .views import *
 
 
-app_name = 'blog'
-
-
 urlpatterns = [
     # home
     path('', views.postslist.as_view(), name='home'),
     # add post
-    path('blog_post/', views.blog_post, name='blog_post'),
-    # success for blog post
-    path('success/', views.success, name='success'),
+    path('blog_post/', views.PostCreateView.as_view(), name='blog_post'),
     # posts
     path('<slug:slug>/', views.postdetail.as_view(), name='post_detail'),
 ]
