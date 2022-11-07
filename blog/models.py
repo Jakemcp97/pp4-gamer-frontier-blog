@@ -29,7 +29,7 @@ class post(models.Model):
     featured_image = CloudinaryField('image', default='placeholder')
     # post status
     status = models.IntegerField(choices=STATUS, default=0)
-    # likes on post 
+    # likes on post
     likes = models.ManyToManyField(
         User, related_name='blogpost_like', blank=True)
 

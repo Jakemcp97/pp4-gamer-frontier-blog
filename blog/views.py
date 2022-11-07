@@ -43,7 +43,7 @@ class postdetail(View):
                 "comment_form": Commentform()
             },
         )
-    
+
     def posting(self, request, slug, *args, **kwargs):
 
         queryset = post.objects.filter(status=1)
