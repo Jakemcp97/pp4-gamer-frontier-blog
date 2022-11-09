@@ -1,11 +1,11 @@
 from django.http import HttpResponse
 from django import forms
-from .models import post, Comment
+from .models import Post, Comment
 
 
 class PostForm(forms.ModelForm):
     class Meta:
-        model = post
+        model = Post
         fields = ['title', 'content']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
@@ -17,4 +17,3 @@ class Commentform(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['body', ]
-        
