@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h2>Edit your post below:</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8-offset-md-2">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form | crispy }}
+                </div>
+                <input button type="submit" class="btn btn-primary" role="button">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
