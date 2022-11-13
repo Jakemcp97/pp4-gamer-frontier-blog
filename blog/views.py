@@ -76,6 +76,8 @@ class postdetail(View):
         )
 
 # likes method
+
+
 class PostLike(View):
     
     def post(self, request, slug, *args, **kwargs):
@@ -88,6 +90,8 @@ class PostLike(View):
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 # user creation of posts
+
+
 class PostCreateView(LoginRequiredMixin, CreateView):
     form_class = PostForm
     template_name = 'create_post.html'
@@ -99,7 +103,9 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         instance.author = self.request.user
         return super().form_valid(form)
 
-# edit post 
+# edit post
+
+
 class Editpost(LoginRequiredMixin, UpdateView):
     form_class = PostForm
     template_name = 'edit_post.html'
@@ -113,6 +119,6 @@ class Editpost(LoginRequiredMixin, UpdateView):
 
 
 # delete post
-class Deletepost(LoginRequiredMixin, Deleteview):
+class Deletepost(LoginRequiredMixin, DeleteView):
     form_class = PostForm
     success_url = reverse_lazy('home')
