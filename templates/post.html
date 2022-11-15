@@ -57,6 +57,9 @@
                             {{ total_comments }}</strong>
                         {% endwith %}
                     </div>
+                    <div class="col-1">
+                        <a class="btn btn-outline-danger" href="{% url 'delete_post' post.id %}">Delete It</a>
+                    </div>
                 </div>
             </div>
         </div>

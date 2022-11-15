@@ -23,7 +23,7 @@ class postslist(generic.ListView):
 # view for individual post
 
 class postdetail(View):
-    # get and display post 
+    # get and display post
     def get(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
@@ -107,7 +107,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 
 class Editpost(LoginRequiredMixin, UpdateView):
-    form_class = PostForm
+    form_class = Post
     template_name = 'edit_post.html'
     success_url = reverse_lazy('home')
 
@@ -120,5 +120,12 @@ class Editpost(LoginRequiredMixin, UpdateView):
 
 # delete post
 class Deletepost(LoginRequiredMixin, DeleteView):
-    form_class = PostForm
-    success_url = reverse_lazy('home')
+    form_class = Post
+    success_url = reverse_lazy('blog:home')
+    template_name = 'templates/post.html'
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
