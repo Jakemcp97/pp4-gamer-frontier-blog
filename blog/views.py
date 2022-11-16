@@ -107,9 +107,10 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 
 class Editpost(LoginRequiredMixin, UpdateView):
-    form_class = Post
+    model = Post
     template_name = 'edit_post.html'
     success_url = reverse_lazy('home')
+    fields = ['title', 'content']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -120,12 +121,11 @@ class Editpost(LoginRequiredMixin, UpdateView):
 
 # delete post
 class Deletepost(LoginRequiredMixin, DeleteView):
-    form_class = Post
-    success_url = reverse_lazy('blog:home')
-    template_name = 'templates/post.html'
+    model = Post
+    success_url = reverse_lazy('home')
+    template_name = 'post.html'
 
-    def test_func(self):
-        post = self.get_object()
-        if self.request.user == post.author:
-            return True
-        return False
+    def get_queryset(self, *args, **kwargs):
+        return (
+            super().get_queryset(*args, **kwargs).filter(author=self.request.user)
+        )

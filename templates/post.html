@@ -58,7 +58,14 @@
                         {% endwith %}
                     </div>
                     <div class="col-1">
-                        <a class="btn btn-outline-danger" href="{% url 'delete_post' post.id %}">Delete It</a>
+                        <form method="post" action="{% url 'delete_post' post.id %}">
+                            {% csrf_token %}
+                            <button class="btn btn-outline-danger" type="submit">Delete</button>
+                        </form>
+                        <form method="post" action="{% url 'edit_post' post.id %}">
+                            {% csrf_token %}
+                            <button class="btn btn-outline-success" type="submit">Edit</button>
+                        </form>
                     </div>
                 </div>
             </div>
