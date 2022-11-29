@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% load crispy_forms_tags %}
-
+{% load static %}
 {% block content %}
 
 <div class="container">
@@ -18,7 +18,7 @@
                     {{ form | crispy }}
                 </div>
                 
-                <input button type="submit" class="btn btn-primary" role="button">
+                <input button type="submit" class="btn btn-primary" value="Submit for admin approval" role="button">
 
             </form>
         </div>
