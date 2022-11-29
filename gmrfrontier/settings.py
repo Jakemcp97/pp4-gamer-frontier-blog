@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'cloudinary_storage',
-    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'cloudinary',
     'django_summernote',
@@ -68,7 +67,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'gmrfrontier.urls'
