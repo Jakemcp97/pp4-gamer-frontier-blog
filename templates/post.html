@@ -6,15 +6,15 @@
     <div class="container">
         <div class="row g-0">
             <div class="col-md-6 masthead-text">
-                <!-- Post title goes in these h1 tags -->
+                <!-- Post title -->
                 <h1 class="post-title text-success">{{ post.title }}</h1>
-                <!-- Post author goes before the | the post's created date goes after -->
+                <!-- author and time/date -->
                 <p class="post-subtitle text-success">{{ post.author }} | {{ post.created_on }}</p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
                 <!-- The featured image URL goes in the src attribute -->
                 {% if "placeholder" in post.featured_image.url %}
-                <img src="https://img.freepik.com/free-photo/medium-shot-man-wearing-vr-glasses_23-2149126949.jpg?w=2000" width="100%">
+                <img src="https://www.geekgirlauthority.com/wp-content/uploads/2021/04/pexels-john-petalcurin-4317157-1125x640.jpg" width="100%">
                 {% else %}
                 <img src=" {{ post.featured_image.url }}" width="100%">
                 {% endif %}
@@ -27,8 +27,7 @@
     <div class="row">
         <div class="col card mb-4  mt-3 left  top">
             <div class="card-body text-dark">
-                <!-- The post content goes inside the card-text. -->
-                <!-- Use the | safe filter inside the template tags -->
+                <!-- post content -->
                 <p class="card-text text-dark">
                     {{ post.content | safe }}
                 </p>
@@ -48,27 +47,34 @@
                             {% else %}
                             <span class="text-secondary"><i class="far fa-heart"></i></span>
                             {% endif %}
-                        <!-- The number of likes goes before the closing strong tag -->
+                        <!-- total likes -->
                         <span class="text-secondary">{{ post.number_of_likes }} </span>
                         </strong>
                     </div>
                     <div class="col-1">
                         {% with comments.count as total_comments %}
                         <strong class="text-dark"><i class="far fa-comments"></i>
-                            <!-- Our total_comments variable goes before the closing strong tag -->
+                            <!-- total comments -->
                             {{ total_comments }}</strong>
                         {% endwith %}
                     </div>
-                    <div class="col-1">
-                        <form method="post" action="{% url 'delete_post' post.id %}">
-                            {% csrf_token %}
-                            <button class="btn btn-outline-danger" type="submit">Delete</button>
-                        </form>
-                        <form method="post" action="{% url 'edit_post' post.id %}">
-                            {% csrf_token %}
-                            <button class="btn btn-outline-success" type="submit">Edit</button>
-                        </form>
-                    </div>
+
+                    <!-- edit and delete buttons if user is author -->
+                {% if user.is_authenticated %}
+                    {% if user.id == post.author.id %}
+                        <div class="col-1">
+                            <form method="post" action="{% url 'delete_post' post.id %}">
+                                {% csrf_token %}
+                                <button class="btn btn-outline-danger" type="submit"><i class="fa-solid fa-trash">Delete</i></button>
+                            </form>
+                            <form method="post" action="{% url 'edit_post' post.id %}">
+                                {% csrf_token %}
+                                <button class="btn btn-outline-success"  type="submit"><i class="fa-solid fa-pen-to-square">Edit</i></button>
+                            </form>
+                        </div>
+                    {% endif %}
+                {% endif %}
+
                 </div>
             </div>
         </div>
@@ -115,7 +121,7 @@
                 <form class="text-dark" method="post" style="margin-top: 1.3em;">
                     {{ comment_form | crispy }}
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+                    <button type="submit" class="btn btn-outline-success btn-lg">Submit</button>
                 </form>
                 {% endif %}
                 {% endif %}
