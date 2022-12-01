@@ -1,6 +1,10 @@
 # GAMERFRONTIER 
+GAMERFRONTIER is a simple community blog focused on gaming and technology news. It allows users to browse moderated content as well as create their own if they so desire!
 
-addimage
+
+addimage from am i responsive
+
+the live site can be viewed [HERE](https://gamer-frontier.herokuapp.com) 
 
 ## Table of Contents
 + [UX](#ux "UX")
@@ -35,24 +39,32 @@ addimage
 ## UX
 
 ### Site Purpose:
-
+This site was built with the gaming community in mind, hoping to encompass recent gaming news and gaming technology news in the posts. The site is laid out so that you will always see the most recent posts first. Users may also submit their own posts for review if they would like to contribute, in an attempt to make the site community driven. 
 
 ### Site Goal:
-
+This sites goal is to provide recent and accurate gaming/technology news, with community feedback and contribution. 
 
 ### Audience:
-
+The targeted audience is the gaming community and technology enthusiasts. 
 
 ### Communication:
+The simple layout was designed to allow a users communication with the layout as easy and intuitive as possible.
 
 ### Current User Goals:
-
+To allow users quick and easy access to the latest news based on gaming and technology. 
 
 ### New User Goals:
-
+To find useful and interesting information from a well laid out website. 
 
 ### Future Goals:
-
+- To have mini games available on the site
+- Add ongoing game and tech deals availble online at the time
+- A subscribable newsletter
+- better UI and content layout
+- video content
+- popular livestreams section
+- allow user profiles to have more depth (eg. a bio, profile picture, friends)
+- an internal messaging system
 
 ## User Stories
 
@@ -71,16 +83,14 @@ addimage
 #### As a visitor:
 1. I can **visit the blog** so that **I can see what is new**.
  - Story points: 5
-2. I can **comment on blog posts** so that **I can give my feedback**.
+2. I can **Create a user profile** giving me **access to site features**.
+  - Story points: 4
+3. I can **comment on blog posts** so that **I can give my feedback**.
  - Story points: 2
-3. I can **like blog posts** so that **I can easily share my enthusiasm**.
+4. I can **like blog posts** so that **I can easily share my enthusiasm**.
  - Story points: 1
-4. I can **peruse the gallery** so that **I can discover new artists, and new artworks by artists I already know**.
- - Story points: 5
-5. I can **follow artists** so that **I can be updated when new work is released**.
- - Story points: 3
-6. I can **like an artists** so that **I can show my appreciation**.
- - Story points: 2
+5. I can **create a blog post** so i can **engage with the site**.
+ - Story points: 4
 
 ## Design
 
