@@ -223,20 +223,18 @@ Authors of a post may edit or delete the blog post.
 
 - CSS files pass through the [Jigsaw validator](https://jigsaw.w3.org/css-validator/) with no issues found.
 
-![Jigsaw validator message](static/images-readme/readme-w3c-css.png)
+![Jigsaw validator message](assets/readme/cssval.png)
 
-- page has an excellent Accessibility rating in Lighthouse
+- page has an excellent performance rating in Lighthouse
 
-![Accessibility score](static/images-readme/readme-lighthouse.png)
+![performance score](assets/readme/lighouse.png)
 
-- Python files passed through [PEP8 Online](http://pep8online.com/) with no issues found.
+- Python files could not be validated through Pep8online as it seems to have deprecated, however using the pypi Pep8 everything was kept within spec with the exception of some of the django based imports. 
 
-![PEP8 message](static/images-readme/readme-pep8.png)
-
-- Tested the site opens in Brave, Chrome & Safari without issues.
-- All social links open to external pages as intended.
+- Tested the site opens in firefox, Chrome & Opera GX without issues.
 
 ### Unfixed Bugs
+- Image upload uploads a string of the images data rather than the image itself. 
 
 ## Technologies Used
 ### Main Languages Used
@@ -248,17 +246,14 @@ Authors of a post may edit or delete the blog post.
 - SQL - Postgres
 
 ### Frameworks, Libraries & Programs Used
-- Google Fonts - for the font families: 
 - Font Awesome - to add icons to the social links in the footer element.
 - GitPod - to create my html files & styling sheet before pushing the project to Github.
 - GitHub - to store my repository for submission.
 - Balsamiq - were used to create mockups of the project prior to starting.
 - Am I Responsive? - to ensure the project looked good across all devices.
-- Favicon - to provide the code & image for the icon in the tab bar.
-- Adobe Photoshop - for photo editing
+- google images - for photo collection
 - Django
 - Bootstrap
-- DrawSQL
 
 ### Installed Packages:
 - 'django<4' gunicorn
@@ -301,34 +296,19 @@ The site was deployed to Heroku. The steps to deploy are as follows:
 - connected my github account to Heroku through the Deploy tab
 - connected my github project repository, and then clicked on the "Deploy" button
 
-- The live link for "print(STATEMENTS)" can be found [HERE](https://print-statements.herokuapp.com/)
+- The live link for "Gamer-Frontier" can be found [HERE](https://gamer-frontier.herokuapp.com)
 
 ## Credits
 
 ### Content
-- [Mats Simonsson](https://github.com/Pelikantapeten): A fellow student & friend who consistently helps me to troubleshoot when needed, support me constantly, and be my rubber duck.
-- [Martina Terlevic](https://github.com/SephTheOverwitch): A constant support system, providing reassurance, and the ability to calm me down.
+- [Lauren-Nicole](https://github.com/CluelessBiker): Forever helpful on the slack channels and helped me sort out a few issues. 
 - “I think therefore I blog” walkthrough: Provided the initial steps for setting up & deploying the site, as well as this, I also used the instructions they provided in order to implement a django blog into my app, following the walkthrough once again step-by-step. This also includes some formatting for the way each blog post is displayed on the blog page. Credits have been added as comments where code was used.
-- "I think therefore I blog" + "Hello Django" + Slack + Stackoverflow + a fellow [student](https://github.com/cornishcoder1): aided in the creation of the CRUD functions.
-- Sean from Tutor Support: Singling out the most recent blog post with an "IF statement".
+- "I think therefore I blog" + "Hello Django" + Slack + Stackoverflow: aided in the creation of the CRUD functions.
 - Ger from Tutor support: assistance deciphering an error I could not understand. Re-linking the Heroku database in the env.py file with the new value resolved this.
-- Ger from Tutor support: limiting view sections to a single user.
-- ['Simple is Better Than Complex'](https://simpleisbetterthancomplex.com/tutorial/2018/01/18/how-to-implement-multiple-user-types-with-django.html): creating types of user groups.
+- Tutor support was invaluable for little issues i ended up stuck on such as working with views and forms in Django.
 - [Bootstrap](https://getbootstrap.com/docs/5.2/components/dropdowns/): dropdown nav menu.
-- [Stackoverflow](https://stackoverflow.com/questions/66185424/django-how-do-i-handle-urls-with-multiple-apps): connect URL paths from multiple apps.
-- [Stackoverflow](https://stackoverflow.com/questions/38724012/django-crispy-forms-set-label-text-for-multiple-fields): add form label.
-- [Stackoverflow](https://stackoverflow.com/questions/3111779/how-can-i-get-the-file-name-from-request-files): iterating over form field.
-- [Stackoverflow](https://stackoverflow.com/questions/23956288/django-all-auth-email-required): Allauth email sign up required.
-- [Slack thread](https://code-institute-room.slack.com/archives/C7EJUQT2N/p1642336796215800?thread_ts=1642316166.200400&cid=C7EJUQT2N): Assistance with function to submit new prints.
-- [Ordinary Coders](https://ordinarycoders.com/blog/article/django-messages-framework): implementing bootstrap messages in django.
 - "Hello Django": The two tests implemented in this project were reused from the walkthrough project.
 
 ### Media
-- All photography displayed in the Artists gallery was created by me.
-- The drawings were provided by my friend, [Eleni Sarri](https://www.instagram.com/elenibydesign/), with her permission.
-
-#### Pexels:
-<!-- - unused, Photo by [Barbara Wyrowińska](https://www.pexels.com/photo/green-photo-frame-2961734/) -->
-- Hero image, Photo by: [Tom Balabaud](https://www.pexels.com/photo/framed-photo-lot-1579708/)
-- About page, Photo by: [¶Project Atlas](https://www.pexels.com/photo/three-paintings-hanging-in-gallery-1674049/)
-- Default blog post image, by: [cottonbro](https://www.pexels.com/photo/person-holding-white-and-black-frame-4065183/)
+- All images were borrowed from google images. 
+- All post content was generated by me. 
