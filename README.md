@@ -235,6 +235,7 @@ Authors of a post may edit or delete the blog post.
 
 ### Unfixed Bugs
 - Image upload uploads a string of the images data rather than the image itself. 
+- images changing the cards height instead of remaining uniform
 
 ## Technologies Used
 ### Main Languages Used
