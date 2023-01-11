@@ -3,7 +3,7 @@ from .models import Post
 from django.views import generic, View
 from django.views.decorators.http import require_GET
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
-from .forms import PostForm, Commentform
+from .forms import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
@@ -60,8 +60,11 @@ class postdetail(View):
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.save()
+            message.success(
+                request, 'Your comment has been submitted for approval successfully!')
         else:
             comment_form = Commentform()
+            messages.error(request, 'Invalid form submission.')
 
         return render(
             request,
@@ -110,7 +113,7 @@ class Editpost(LoginRequiredMixin, UpdateView):
     model = Post
     template_name = 'edit_post.html'
     success_url = reverse_lazy('home')
-    fields = ['title', 'content']
+    form_class = UpdateForm
 
     def form_valid(self, form):
         form.instance.user = self.request.user
