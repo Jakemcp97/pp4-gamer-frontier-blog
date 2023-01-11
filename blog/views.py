@@ -5,6 +5,7 @@ from django.views.decorators.http import require_GET
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from .forms import *
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.views.generic.edit import ModelFormMixin, UpdateView, DeleteView
@@ -105,6 +106,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         instance = form.save(commit=False)
         instance.author = self.request.user
         return super().form_valid(form)
+        messages.success(request, "Submitted for approval!")
 
 # edit post
 
@@ -114,12 +116,6 @@ class Editpost(LoginRequiredMixin, UpdateView):
     template_name = 'edit_post.html'
     success_url = reverse_lazy('home')
     form_class = UpdateForm
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        instance = form.save(commit=False)
-        instance.author = self.request.user
-        return super().form_valid(form)
 
 
 # delete post
@@ -132,3 +128,4 @@ class Deletepost(LoginRequiredMixin, DeleteView):
         return (
             super().get_queryset(*args, **kwargs).filter(author=self.request.user)
         )
+        messages.success(request, "Post Deleted.")

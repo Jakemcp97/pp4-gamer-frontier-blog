@@ -63,11 +63,11 @@
                 {% if user.is_authenticated %}
                     {% if user.id == post.author.id %}
                         <div class="col-1">
-                            <form method="post" action="{% url 'delete_post' post.id %}">
+                            <form method="POST" action="{% url 'delete_post' post.pk %}" onsubmit="window.mytest()">
                                 {% csrf_token %}
                                 <button class="btn btn-outline-danger" type="submit"><i class="fa-solid fa-trash">Delete</i></button>
                             </form>
-                            <form method="post" action="{% url 'edit_post' post.id %}">
+                            <form method="get" action="{% url 'edit_post' post.id %}">
                                 {% csrf_token %}
                                 <button class="btn btn-outline-success"  type="submit"><i class="fa-solid fa-pen-to-square">Edit</i></button>
                             </form>
@@ -130,4 +130,5 @@
     </div>
 </div>
 
+<script type="text/javascript">window.mytest = function() { var isValid = confirm('Are you sure ?');if (!isValid) { event.preventDefault();  alert("Delete cancelled!");}}</script>
 {% endblock content %}
