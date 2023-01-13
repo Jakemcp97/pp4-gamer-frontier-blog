@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinLengthValidator
 from cloudinary.models import CloudinaryField
 from django import forms
 from django.utils.text import slugify
@@ -14,7 +15,8 @@ STATUS = (
 
 class Post(models.Model):
     # title field
-    title = models.CharField(max_length=200, unique=True)
+    title = models.CharField(
+        max_length=200, unique=True, validators=[MinLengthValidator(10)])
     # Slug field
     slug = models.SlugField(max_length=200, unique=True)
     # author field
@@ -24,7 +26,7 @@ class Post(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
     created_on = models.DateTimeField(auto_now=True)
     # content field
-    content = models.TextField()
+    content = models.TextField(validators=[MinLengthValidator(10)])
     # content image
     featured_image = CloudinaryField('image', default='placeholder')
     # post status

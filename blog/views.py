@@ -6,6 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidde
 from .forms import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.views.generic.edit import ModelFormMixin, UpdateView, DeleteView
@@ -61,11 +62,12 @@ class postdetail(View):
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.save()
-            message.success(
-                request, 'Your comment has been submitted for approval successfully!')
+            messages.success(
+                self.request,
+                'Your comment has been submitted for approval successfully!')
         else:
             comment_form = Commentform()
-            messages.error(request, 'Invalid form submission.')
+            messages.error(self.request, 'Invalid form submission.')
 
         return render(
             request,
@@ -88,8 +90,10 @@ class PostLike(View):
         post = get_object_or_404(Post, slug=slug)
         if post.likes.filter(id=request.user.id).exists():
             post.likes.remove(request.user)
+            messages.error(self.request, 'Post unliked!')
         else:
             post.likes.add(request.user)
+            messages.success(self.request, "Post Liked.")
 
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
@@ -105,8 +109,12 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         instance = form.save(commit=False)
         instance.author = self.request.user
+        messages.success(self.request, 'Post submitted for review!')
         return super().form_valid(form)
-        messages.success(request, "Submitted for approval!")
+    
+    def form_invalid(self, form):
+        return super().form_valid(form)
+        messages.error(self.request, 'an error has occurred, please try again.')
 
 # edit post
 
@@ -125,7 +133,7 @@ class Deletepost(LoginRequiredMixin, DeleteView):
     template_name = 'post.html'
 
     def get_queryset(self, *args, **kwargs):
+        messages.success(self.request, "Post Deleted.")
         return (
             super().get_queryset(*args, **kwargs).filter(author=self.request.user)
         )
-        messages.success(request, "Post Deleted.")
