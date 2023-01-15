@@ -64,6 +64,13 @@ To find useful and interesting information from a well laid out website.
 - allow user profiles to have more depth (eg. a bio, profile picture, friends)
 - an internal messaging system
 
+### Use of agile methodology
+
+Throughout the development of this project, i constantly developed ideas or planned to improve features as it went along. To keep track of these a Github kanban board was created with the purpose of streamlining my ideas to completion success rate. 
+
+I also used it to plan out my user stories, which i created a simple template based on the one used at code institue. 
+
+Github’s Kanban board is an extremely useful feature that this project used. Through it, tasks were marked conveniently when done, and User Stories were closed when fulfilled. Here is the link for the project’s Kanban board - [CLICK HERE](https://github.com/users/Jakemcp97/projects/1).
 ## User Stories
 
 
